@@ -2,38 +2,36 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'etudiant.dart';
 
-  // A function that converts a response body into a List<Photo>.
-  List<Etudiant> parseEtudiant(String responseBody) {
-    final parsed = (jsonDecode(responseBody) as List).cast<Map<String, dynamic>>();
-    return parsed.map<Etudiant>((json) => Etudiant.fromJson(json)).toList();
-  }
+List<Etudiant> parseEtudiant(String responseBody) {
+  final parsed = (jsonDecode(responseBody) as List).cast<Map<String, dynamic>>();
+  return parsed.map<Etudiant>((json) => Etudiant.fromJson(json)).toList();
+}
+Future<List<Etudiant>> fetchEtudiant(http.Client client) async {
+  final url = 'http://192.168.43.220:8000/api/etudiantliste';
+  final response = await client.get(Uri.parse(url));
+  String responseapi = response.body.toString().replaceAll("\n", "");
+  return parseEtudiant(responseapi);
+}
 
-  Future<List<Etudiant>> fetchEtudiant(http.Client client) async {
-    final url='http://192.168.152.251:8000/api/etudiant';
-    final response = await client.get(Uri.parse(url));
-    // Use the compute function to run parsePhotos in a separate isolate.
-    String responseapi = response.body.toString().replaceAll("\n","");
-    print(responseapi);
-    return parseEtudiant(responseapi);
-  }
-  //*******************************----------------------------------/*
-Future<void> postEtudiant(List<Etudiant> etudiand) async {
-  final url = Uri.parse('http://192.168.152.251:8000/api/etudiant');
-  // The data you want to send
-  String jsonTags = jsonEncode(etudiand);
-  final data = jsonTags;
+Future<bool> postEtudiant(List<Etudiant> etudiants) async {
+  final url = Uri.parse('http://192.168.43.220:8000/api/postetudiant');
+  String jsonData = jsonEncode(etudiants);
+  print(jsonData);
   try {
     final response = await http.post(
       url,
-      body: data,
+      body: jsonData,
+      headers: {'Content-Type': 'application/json'},
     );
     if (response.statusCode == 200) {
-      print('Data posted successfully');
+      print('Données postées avec succès');
       print(response.body);
+      return true;
     } else {
-      print('Failed to post data: ${response.statusCode}');
+      print('Échec de la publication des données: ${response.statusCode}');
     }
   } catch (e) {
-    print('Error: $e');
+    print('Erreur: $e');
   }
+  return false;
 }

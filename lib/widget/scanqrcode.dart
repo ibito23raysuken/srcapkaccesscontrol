@@ -214,9 +214,7 @@ class _ScanqrcodeState extends State<Scanqrcode> {
       print(result?.code);
       if(element.ref_qrcode==result?.code){
         databaseClient().ajoutItem(element);
-        Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-          return new Presence(title: 'Control Access System');
-        }));
+        Navigator.pop(context,true);
       }
     });
     if(result?.code==null){

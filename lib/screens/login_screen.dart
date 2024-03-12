@@ -1,17 +1,21 @@
+import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import '../utilities/constants.dart';
-
+import '../model/auth_controller.dart';
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _rememberMe = false;
+  final AuthController authController = Get.find();
+  TextEditingController nomController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   Widget _buildEmailTF() {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -25,6 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: nomController,
             keyboardType: TextInputType.name,
             style: TextStyle(
               color: Colors.white,
@@ -60,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: passwordController,
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -81,13 +87,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
   Widget _buildLoginBtn() {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () => context.go('/home'),
+        onPressed:() async {
+          await authController.login(nomController.text, passwordController.text);
+        },
         child: Text(
           'LOGIN',
           style: TextStyle(

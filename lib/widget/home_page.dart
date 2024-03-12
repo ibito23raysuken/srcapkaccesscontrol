@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import '/model/auth_controller.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class homepage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -9,15 +11,18 @@ class homepage extends StatefulWidget {
 }
 
 class _homepage extends State<homepage> {
+  final AuthController authController = Get.find();
   var theme1 = Colors.white;
   var theme2 = Color(0xff2E324F);
   var white = Colors.white;
   var black = Colors.black;
   bool switchColor = false;
-
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    authController.getAuthData();
+    print(authController.isLoggedIn.value); // Exemple : Affichez la valeur de isLoggedIn
+    print( authController.apiData['matiere']); //
+    recuperer(authController.apiData['matiere']);
     return Scaffold(
       backgroundColor: theme1,
       body: SingleChildScrollView(
@@ -26,7 +31,15 @@ class _homepage extends State<homepage> {
             _profilePic(),
             Padding(
               padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
-              child: Text("Nom de L'enseignant",
+              child: Text(authController.apiData['nom'],
+                  style: TextStyle(
+                      color: black,
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.bold)),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 4.0),
+              child: Text(authController.apiData['prenom'],
                   style: TextStyle(
                       color: black,
                       fontSize: 26.0,
@@ -49,6 +62,12 @@ class _homepage extends State<homepage> {
                 height: 50.0,
               ),
             ),
+          ElevatedButton(
+          onPressed: () async {
+          await authController.logout();
+          },
+            child: Text('Se déconnecter'),
+    )
           ],
         ),
       ),
@@ -70,9 +89,15 @@ class _homepage extends State<homepage> {
             width: 30.0,
             child: Image.asset("image_assets/verified.png"),
             alignment: Alignment.bottomRight,
-          ),
+          )
         ],
+
       ),
     ),
   );
+
+  Future<void> recuperer(matiere) async {
+    setState(() {
+    });
+  }
 }

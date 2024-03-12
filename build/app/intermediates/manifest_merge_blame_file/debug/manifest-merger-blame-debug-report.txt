@@ -13,14 +13,14 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:6:5-67
-15-->/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:6:22-64
+15-->/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:6:5-67
+15-->/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:6:22-64
 16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:7:5-79
-16-->/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:7:22-76
+16-->/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:7:5-79
+16-->/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/debug/AndroidManifest.xml:7:22-76
 17    <uses-permission android:name="android.permission.VIBRATE" />
-17-->[:vibration] /media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/vibration/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-66
-17-->[:vibration] /media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/vibration/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-63
+17-->[:vibration] /media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/vibration/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-66
+17-->[:vibration] /media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/vibration/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-63
 18    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
 18-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/faniry/.gradle/caches/transforms-3/421d44eefcaeaaf501208e31a906b756/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:22:5-65
 18-->[com.journeyapps:zxing-android-embedded:4.3.0] /home/faniry/.gradle/caches/transforms-3/421d44eefcaeaaf501208e31a906b756/transformed/jetified-zxing-android-embedded-4.3.0/AndroidManifest.xml:22:22-62

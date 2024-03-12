@@ -1,9 +1,9 @@
-#Fri Dec 22 21:23:22 EAT 2023
-base.0=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
-base.1=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
-base.2=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.3=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.4=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
+#Sat Mar 09 12:54:45 EAT 2024
+base.0=/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
+base.2=/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.3=/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+base.4=/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=0/classes.dex

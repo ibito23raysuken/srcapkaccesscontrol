@@ -114,25 +114,6 @@
                     }
                 },
                 {
-                    "source": "/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "173,818",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "476,982"
-                    },
-                    "to": {
-                        "startLines": "1428,1432",
-                        "startColumns": "4,4",
-                        "startOffsets": "91773,91954",
-                        "endLines": "1431,1434",
-                        "endColumns": "12,12",
-                        "endOffsets": "91949,92118"
-                    }
-                },
-                {
                     "source": "/home/faniry/.gradle/caches/transforms-3/421d44eefcaeaaf501208e31a906b756/transformed/jetified-zxing-android-embedded-4.3.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,38,48,55",
@@ -202,6 +183,25 @@
                         "startOffsets": "17725",
                         "endColumns": "42",
                         "endOffsets": "17763"
+                    }
+                },
+                {
+                    "source": "/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "173,818",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "476,982"
+                    },
+                    "to": {
+                        "startLines": "1428,1432",
+                        "startColumns": "4,4",
+                        "startOffsets": "91773,91954",
+                        "endLines": "1431,1434",
+                        "endColumns": "12,12",
+                        "endOffsets": "91949,92118"
                     }
                 }
             ]

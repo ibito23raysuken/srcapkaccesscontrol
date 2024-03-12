@@ -26,7 +26,6 @@ class databaseClient {
   }
 
   Future<Etudiant?> ajoutItem(Etudiant item) async{
-    print(item);
     Database? maDatabase=await database;
     item.id=(await maDatabase?.insert('presence',item.toMap()))!;
     return item;

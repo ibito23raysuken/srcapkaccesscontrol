@@ -1,4 +1,0 @@
-#Fri Dec 22 21:38:52 EAT 2023
-base.0=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/home/faniry/Téléchargements/flutter"
-export "FLUTTER_APPLICATION_PATH=/media/faniry/46FCB13DFCB127D7/Documentation/creation/PROJET2023/Man-projet gestion acces/srccontrolaccess"
+export "FLUTTER_APPLICATION_PATH=/media/faniry/DATA1/Documentation/creation/PROJET2023/DEV-Man-projet gestion acces/srccontrolaccess"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
