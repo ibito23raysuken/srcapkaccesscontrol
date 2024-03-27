@@ -11,7 +11,7 @@ import 'package:vibration/vibration.dart';
 import '../model/databaseClient.dart';
 import '../model/etudiant.dart';
 import '../model/request.dart';
-import 'custom_text.dart';
+import 'widgetother/custom_text.dart';
 
 class Scanqrcode extends StatefulWidget {
   const Scanqrcode({super.key, required this.title});

@@ -6,14 +6,16 @@ import '../model/etudiant.dart';
 import '../model/request.dart';
 
 class List_etudiants extends StatefulWidget {
-  const List_etudiants({super.key});
+  const List_etudiants({Key? key}) : super(key: key);
+
   @override
   State<List_etudiants> createState() => _List_etudiantsState();
 }
 
-//-------------------------------------------------------------------------------//
 class _List_etudiantsState extends State<List_etudiants> {
   List<Etudiant> recup = [];
+  bool _isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -23,23 +25,23 @@ class _List_etudiantsState extends State<List_etudiants> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: vueliste(recup)
-        );
+      body: _isLoading // Affichez un indicateur de chargement si nécessaire
+          ? Center(child: CircularProgressIndicator())
+          : vueliste(recup),
+    );
   }
-  //-----------------------------------------------------------------------//
 
   Future<void> recuperer() async {
-    List<Etudiant> listeetudiant = await fetchEtudiant(http.Client());
-    setState(() {
-      for (Etudiant etudiant in listeetudiant) {
-        recup.add(etudiant);
+    try {
+      List<Etudiant> listeetudiant = await fetchEtudiant(http.Client());
+      if (mounted) {
+        setState(() {
+          recup.addAll(listeetudiant);
+          _isLoading = false;
+        });
       }
-    });
+    } catch (e) {
+      print('Erreur lors de la récupération des données: $e');
+    }
   }
-
 }
-
-
-
-
-

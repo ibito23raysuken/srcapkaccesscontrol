@@ -35,6 +35,11 @@ class databaseClient {
     Database? maDatabase=await database;
     return await maDatabase?.delete(table,where : 'id=?' ,whereArgs:[id]);
   }
+  //effacer item d'item
+  Future<int?> deleteallitem(String table) async{
+    Database? maDatabase=await database;
+    return await maDatabase?.delete(table);
+  }
   Future<List<Etudiant>> allItem() async{
     List<Etudiant> items=[];
     Database? maDatabase=await database;

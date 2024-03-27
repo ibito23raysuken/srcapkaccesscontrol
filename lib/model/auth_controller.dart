@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:srccontrolaccess/model/url_controller.dart';
 
 class AuthController extends GetxController {
   RxBool isLoggedIn = false.obs;
@@ -9,34 +10,34 @@ class AuthController extends GetxController {
   static const String isLoggedInKey = 'isLoggedIn';
   static const String apiDataKey = 'apiData';
 
-  Future<void> login(String nom, String password) async {
+  Future<bool> login(String nom, String password) async {
     try {
+      print('${UrlController.baseurl}/enseignant/login');
       final response = await http.post(
-        Uri.parse('http://192.168.43.220:8000/api/enseignant/login'),
+        Uri.parse('${UrlController.baseurl}/enseignant/login'),
         body: {
           'nom': nom,
           'password': password,
         },
-      );
-
+      ).timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
-        print(responseData);
         isLoggedIn.value = true;
         apiData = responseData['data'];
         await saveAuthData();
-
       } else {
         final Map<String, dynamic> responseData = json.decode(response.body);
         final String errorMessage = responseData['message'];
         print('Erreur de connexion: $errorMessage');
         isLoggedIn.value = false;
+        return false;
       }
     } catch (error) {
-      // Gérez les erreurs d'exception ici
       print('Erreur lors de la connexion: $error');
       isLoggedIn.value = false;
+      return false;
     }
+    return true;
   }
 
   Future<void> logout() async {

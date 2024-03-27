@@ -1,9 +1,11 @@
-import 'dart:convert';
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../model/matiere_controller.dart';
 import '../utilities/constants.dart';
 import '../model/auth_controller.dart';
+import '../widget/widgetpopup/showDialogConnexion.dart';
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -11,11 +13,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final AuthController authController = Get.find();
+  final Matierecontroller matiereController = Get.put(Matierecontroller());
   TextEditingController nomController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
 
   Widget _buildEmailTF() {
-
+    matiereController.changematiere("");
+    print(matiereController.matiereSelected);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -92,10 +97,31 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
       child: ElevatedButton(
-        onPressed:() async {
-          await authController.login(nomController.text, passwordController.text);
+        onPressed:isLoading ? null : () async {
+          setState(() {
+            isLoading = true;
+          });
+          try {
+            await authController.login(nomController.text, passwordController.text);
+            if(!await authController.login(nomController.text, passwordController.text)){
+              ShowDialogConnexion.Show(context);
+            }
+          } catch (error) {
+            print(error);
+          } finally {
+            setState(() {
+              isLoading = false;
+            });
+          }
         },
-        child: Text(
+        child:isLoading ?
+        Container(
+          color: Colors.transparent,
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ) :
+        Text(
           'LOGIN',
           style: TextStyle(
             color: Color(0xFF527DAA),
@@ -106,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+
     );
   }
 
@@ -162,6 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       _buildPasswordTF(),
                       _buildLoginBtn(),
+
                     ],
                   ),
                 ),

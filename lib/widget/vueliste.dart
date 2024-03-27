@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import '../model/etudiant.dart';
-import 'custom_text.dart';
+import 'widgetother/custom_text.dart';
 
 class vueliste extends StatefulWidget{
   late List<Etudiant> etudiant;

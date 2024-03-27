@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:srccontrolaccess/model/url_controller.dart';
 import 'etudiant.dart';
 
 List<Etudiant> parseEtudiant(String responseBody) {
@@ -7,20 +8,25 @@ List<Etudiant> parseEtudiant(String responseBody) {
   return parsed.map<Etudiant>((json) => Etudiant.fromJson(json)).toList();
 }
 Future<List<Etudiant>> fetchEtudiant(http.Client client) async {
-  final url = 'http://192.168.43.220:8000/api/etudiantliste';
+  final url = '${UrlController.baseurl}/etudiantliste';
+  print(url);
   final response = await client.get(Uri.parse(url));
   String responseapi = response.body.toString().replaceAll("\n", "");
   return parseEtudiant(responseapi);
 }
 
-Future<bool> postEtudiant(List<Etudiant> etudiants) async {
-  final url = Uri.parse('http://192.168.43.220:8000/api/postetudiant');
-  String jsonData = jsonEncode(etudiants);
-  print(jsonData);
+Future<bool> postEtudiant(List<Etudiant> etudiants,String matiere) async {
+  print(matiere);
+  final url = Uri.parse('${UrlController.baseurl}/postetudiant');
+  Map<String, dynamic> jsonData = {
+    'etudiants': etudiants,
+    'matiere': matiere,
+  };
+  String jsonString = jsonEncode(jsonData);
   try {
     final response = await http.post(
       url,
-      body: jsonData,
+      body: jsonString,
       headers: {'Content-Type': 'application/json'},
     );
     if (response.statusCode == 200) {
