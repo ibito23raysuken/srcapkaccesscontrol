@@ -211,19 +211,12 @@ class _homepage extends State<homepage> {
   );
 
   Future<void> recuperer(matieres) async {
-    print(matieres);
+    print(matieres.length);
     listecours.clear();
     listecours.add("Liste des matieres");
-    if(matieres.length<2){
       for (var value in matieres) {
         print("*** ${value["nomcours"]}");
         listecours.add(value["cours"]["nomcours"]);
-      }
-    }else{
-      for (var value in matieres.values) {
-        print("*** ${value["cours"]["nomcours"]}");
-        listecours.add(value["cours"]["nomcours"]);
-      }
     }
 
   }
