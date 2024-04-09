@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../model/color_controller.dart';
 import '../model/matiere_controller.dart';
 import '../utilities/constants.dart';
 import '../model/auth_controller.dart';
@@ -14,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final AuthController authController = Get.find();
   final Matierecontroller matiereController = Get.put(Matierecontroller());
+  final ColorsController colorscontroller = Get.put(ColorsController());
   TextEditingController nomController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
@@ -67,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SizedBox(height: 10.0),
         Container(
           alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
+          decoration: colorscontroller.colorbool? kBoxDecorationStyle : kBoxDecorationStyle1,
           height: 60.0,
           child: TextField(
             controller: passwordController,
@@ -139,6 +141,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorscontroller.colorSelected,
+        actions: <Widget>[
+          IconButton(onPressed: ()=>{colorscontroller.changeColor(colorscontroller.colorbool),setState(() {
+            colorscontroller.colorbool;
+          })}, icon: Icon(colorscontroller.colorbool?Icons.sunny:Icons.nightlight_round,color: Colors.white,))
+        ],
+      ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: GestureDetector(
@@ -152,11 +162,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [
+                    colors: !colorscontroller.colorbool?[
                       Color(0xFF673AB7),
                       Color(0xFF7E57C2),
                       Color(0xFF9575CD),
                       Color(0xFFB39DDB),
+                    ]:[
+                      colorscontroller.colorSelected,
+                      colorscontroller.colorSelected,
+                      colorscontroller.colorSelected,
+                      colorscontroller.colorSelected,
                     ],
                     stops: [0.1, 0.4, 0.7, 0.9],
                   ),
