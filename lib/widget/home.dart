@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:srccontrolaccess/widget/presence.dart';
+import '../model/color_controller.dart';
 import 'List_etudiants.dart';
 import 'home_page.dart';
 
@@ -14,10 +17,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final ColorsController colorscontroller = Get.put(ColorsController());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: colorscontroller.colorSelected,
         title: Text(widget.title,style: new TextStyle(color: Colors.white)),
+        actions: <Widget>[
+          IconButton(onPressed: ()=>{colorscontroller.changeColor(colorscontroller.colorbool),setState(() {
+            colorscontroller.colorbool;
+          })}, icon: Icon(colorscontroller.colorbool?Icons.sunny:Icons.nightlight_round,color: Colors.white,))
+        ],
       ),
       body: <Widget>[
         homepage(),
@@ -25,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
         List_etudiants(),
       ][_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: colorscontroller.colorSelected,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle,color: Colors.white),

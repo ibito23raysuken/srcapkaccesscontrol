@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:srccontrolaccess/widget/scanqrcode.dart';
 import 'package:get/get.dart';
 import 'package:srccontrolaccess/widget/widgetpopup/showDialogsend.dart';
+import '../model/color_controller.dart';
 import 'widgetpopup/PresentationPopup.dart';
 import '../model/databaseClient.dart';
 import '../model/etudiant.dart';
@@ -22,6 +23,8 @@ class Presence extends StatefulWidget {
 class _Presence extends State<Presence> {
   bool isExpanded = false;
   final Matierecontroller matiereController = Get.put(Matierecontroller());
+  final ColorsController colorscontroller = Get.put(ColorsController());
+
   List<Etudiant> recupelevepresent = [];
   late int index;
 
@@ -137,7 +140,7 @@ class _Presence extends State<Presence> {
                     height: 60,
                     child: FittedBox(
                       child: FloatingActionButton(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: colorscontroller.colorSelected,
                         heroTag: "btn3",
                         shape: new CircleBorder(),
                         onPressed: (){
@@ -159,7 +162,7 @@ class _Presence extends State<Presence> {
                     height: 60,
                     child: FittedBox(
                       child: FloatingActionButton(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: colorscontroller.colorSelected,
                         shape: new CircleBorder(),
                         heroTag: "btn1",
                         onPressed: post_presence,
@@ -175,7 +178,7 @@ class _Presence extends State<Presence> {
                     height: 60,
                     child: FittedBox(
                       child: FloatingActionButton(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: colorscontroller.colorSelected,
                         heroTag: "btn2",
                         shape: new CircleBorder(),
                         onPressed: vers_scanarcode,
@@ -191,7 +194,7 @@ class _Presence extends State<Presence> {
             padding: EdgeInsets.all(7.0),
           ),
           FloatingActionButton(
-            backgroundColor: !isExpanded ? Colors.deepPurple:Colors.red,
+            backgroundColor: !isExpanded ? colorscontroller.colorSelected:Colors.red,
             shape: isExpanded ? new CircleBorder() :RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),

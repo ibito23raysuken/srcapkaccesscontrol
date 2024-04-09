@@ -4,10 +4,14 @@ import 'dart:developer';
 import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'package:srccontrolaccess/widget/presence.dart';
+import 'package:srccontrolaccess/widget/widgetpopup/showDialogueEtudiant.dart';
 import 'package:vibration/vibration.dart';
+import '../model/color_controller.dart';
 import '../model/databaseClient.dart';
 import '../model/etudiant.dart';
 import '../model/request.dart';
@@ -24,6 +28,7 @@ class Scanqrcode extends StatefulWidget {
 
 //-------------------------------------------------------------------------------//
 class _ScanqrcodeState extends State<Scanqrcode> {
+  final ColorsController colorscontroller = Get.put(ColorsController());
   List<Etudiant> recup = [];
   Barcode? result;
   QRViewController? controller;
@@ -55,7 +60,7 @@ class _ScanqrcodeState extends State<Scanqrcode> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: colorscontroller.colorSelected,
         title: Text(widget.title,style: new TextStyle(color: Colors.white)),
       ),
       body: Column(
@@ -90,7 +95,7 @@ class _ScanqrcodeState extends State<Scanqrcode> {
                                 }}),
                             style: ElevatedButton.styleFrom(
                                 fixedSize: Size(MediaQuery.of(context).size.width*0.8,50),
-                                backgroundColor: Colors.deepPurple,
+                                backgroundColor: colorscontroller.colorSelected,
                                 shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20))
                             ),
                             onPressed: () async {
@@ -115,7 +120,7 @@ class _ScanqrcodeState extends State<Scanqrcode> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               fixedSize: Size(MediaQuery.of(context).size.width*0.8,50),
-                              backgroundColor: Colors.deepPurple,
+                              backgroundColor: colorscontroller.colorSelected,
                               shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20))
                           ),
                           onPressed: verification,
@@ -209,16 +214,21 @@ class _ScanqrcodeState extends State<Scanqrcode> {
   }
 //--------------------verification---------------------------------------------------//
   verification() {
-    recup.forEach((element) {
-      print(element);
-      print(result?.code);
-      if(element.ref_qrcode==result?.code){
-        databaseClient().ajoutItem(element);
-        Navigator.pop(context,true);
-      }
-    });
     if(result?.code==null){
       Showdialogue(context);
+    }else{
+      recup.forEach((element) {
+        if(element.ref_qrcode==result?.code){
+          databaseClient().ajoutItem(element);
+          Navigator.pop(context,true);
+        }
+        else{
+          showDialogueEtudiant.Show(context);
+          setState(() {
+            result = null;
+          });
+        }
+      });
     }
   }
 //--------------------fin---------------------------------------------------//

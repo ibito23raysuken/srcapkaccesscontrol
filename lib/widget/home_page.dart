@@ -7,6 +7,7 @@ import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
 import '../model/auth_controller.dart';
+import '../model/color_controller.dart';
 import '../model/matiere_controller.dart';
 class homepage extends StatefulWidget {
   @override
@@ -19,8 +20,10 @@ class homepage extends StatefulWidget {
 class _homepage extends State<homepage> {
   final AuthController authController = Get.find();
   final Matierecontroller matiereController = Get.put(Matierecontroller());
+  final ColorsController colorscontroller = Get.put(ColorsController());
+
   var theme1 = Colors.white;
-   var theme2 = Color(0xff2E324F);
+  var theme2 = Color(0xff2E324F);
   //var white = Colors.white;
   var black = Colors.black;
   bool switchColor = false;
@@ -36,20 +39,20 @@ class _homepage extends State<homepage> {
         child: Column(
           children: <Widget>[
           Container(
-          height: 30,
+          height: 100,
           width: double.infinity,
           child:WaveWidget(
                 config: CustomConfig(
                   colors: [
-                    Theme.of(context).colorScheme.primary,
+                    colorscontroller.colorSelected,
                     theme1,
                   ],
-                  durations: [32000, 21000],
-                  heightPercentages: [0.1, 0.10],
+                  durations: [3200, 3200],
+                  heightPercentages: [0.5, 0.1],
                 ),
-                backgroundColor: Theme.of(context).colorScheme.primary,
+                backgroundColor: colorscontroller.colorSelected,
                 size: Size(double.infinity, double.infinity),
-                waveAmplitude: 1,
+                waveAmplitude: 5,
               )),
             Padding(
               padding: EdgeInsets.only(top: 70),
@@ -69,7 +72,7 @@ class _homepage extends State<homepage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                color: Color(0xFFB39DDB),
+                                color: colorscontroller.colorSelected,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.min,
@@ -143,13 +146,13 @@ class _homepage extends State<homepage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(40.0, 8.0, 40.0, 0.0),
               child: Divider(
-                color: Color(0xff78909c),
+                color: colorscontroller.colorSelected,
                 height: 50.0,
               ),
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF7E57C2),
+                backgroundColor: colorscontroller.colorSelected,
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
               ),
               onPressed: () async {
